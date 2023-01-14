@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSortingService", "FileSortingService\FileSortingService.csproj", "{56463F5D-0DB8-44A2-8DA3-A26DB55733BB}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "FileSortingServiceSetup", "FileSortingServiceSetup\FileSortingServiceSetup.vdproj", "{9F9518C4-FF0E-4079-A9DE-D149E1F639D4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{56463F5D-0DB8-44A2-8DA3-A26DB55733BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56463F5D-0DB8-44A2-8DA3-A26DB55733BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56463F5D-0DB8-44A2-8DA3-A26DB55733BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56463F5D-0DB8-44A2-8DA3-A26DB55733BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F9518C4-FF0E-4079-A9DE-D149E1F639D4}.Debug|Any CPU.ActiveCfg = Release
+		{9F9518C4-FF0E-4079-A9DE-D149E1F639D4}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C1ACD295-CEA4-427F-8640-8C93E7BAEC75}
+	EndGlobalSection
+EndGlobal
