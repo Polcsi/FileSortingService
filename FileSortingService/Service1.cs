@@ -12,11 +12,11 @@ namespace FileSortingService
 {
     public partial class Service1 : ServiceBase
     {
-        private Change Change { get; set; }
+        private Change ChangeObj { get; set; }
         public Service1()
         {
             InitializeComponent();
-            Change = new Change();
+            ChangeObj = new Change();
         }
         public void onDebug()
         {
@@ -24,12 +24,12 @@ namespace FileSortingService
         }
         protected override void OnStart(string[] args)
         {
-            Change.Start();
+            ChangeObj.Start();
         }
 
         protected override void OnStop()
         {
-            Change.Stop();
+            ChangeObj.Stop();
         }
     }
 }

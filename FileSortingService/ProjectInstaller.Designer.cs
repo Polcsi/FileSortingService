@@ -44,8 +44,6 @@
             this.serviceInstaller1.ServiceName = "FileSortingService";
             this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             this.serviceInstaller1.AfterInstall += new System.Configuration.Install.InstallEventHandler(this.serviceInstaller1_AfterInstall);
-            this.serviceInstaller1.AfterUninstall += new System.Configuration.Install.InstallEventHandler(this.serviceInstaller1_AfterUninstall);
-            this.serviceInstaller1.BeforeUninstall += new System.Configuration.Install.InstallEventHandler(this.serviceInstaller1_BeforeUninstall);
             // 
             // ProjectInstaller
             // 

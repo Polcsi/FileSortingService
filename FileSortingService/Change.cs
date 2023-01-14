@@ -55,11 +55,54 @@ namespace FileSortingService
             watcher = new FileSystemWatcher(Path);
             setTimer();
         }
+        public void Start()
+        {
+            try
+            {
+                if (!Directory.Exists(Path))
+                {
+                    Directory.CreateDirectory(Path);
+                }
+            }
+            catch (Exception ex)
+            {
+                logMessage(ex.Message);
+            }
+            logMessage($"Directory watching started... here: {Path}");
+
+            watcher.NotifyFilter = NotifyFilters.Attributes
+                                 | NotifyFilters.CreationTime
+                                 | NotifyFilters.DirectoryName
+                                 | NotifyFilters.FileName
+                                 | NotifyFilters.LastAccess
+                                 | NotifyFilters.LastWrite
+                                 | NotifyFilters.Security
+                                 | NotifyFilters.Size;
+
+            watcher.Deleted += OnDelete;
+            watcher.Created += OnCreated;
+
+            watcher.Filter = "";
+            watcher.IncludeSubdirectories = includeSubdirectories;
+            watcher.EnableRaisingEvents = true;
+        }
         public void Stop()
         {
+            // delete watch folders if empty
             logMessage("Directory watching is stopped.");
             watcher.Dispose();
             _timer.Dispose();
+            try
+            {
+                if (Directory.Exists(Path) && IsDirectoryEmpty(Path))
+                {
+                    Directory.Delete(Path, true);
+                }
+            }
+            catch (Exception ex)
+            {
+                logMessage(ex.ToString());
+            }
         }
         private void setTimer()
         {
@@ -82,26 +125,6 @@ namespace FileSortingService
             }
             logMessage($"{elapsedSeconds}");
             elapsedSeconds++;
-        }
-        public void Start()
-        {
-            logMessage($"Directory watching started... here: {Path}");
-
-            watcher.NotifyFilter = NotifyFilters.Attributes
-                                 | NotifyFilters.CreationTime
-                                 | NotifyFilters.DirectoryName
-                                 | NotifyFilters.FileName
-                                 | NotifyFilters.LastAccess
-                                 | NotifyFilters.LastWrite
-                                 | NotifyFilters.Security
-                                 | NotifyFilters.Size;
-
-            watcher.Deleted += OnDelete;
-            watcher.Created += OnCreated;
-
-            watcher.Filter = "";
-            watcher.IncludeSubdirectories = includeSubdirectories;
-            watcher.EnableRaisingEvents = true;
         }
         public static void logMessage(string message)
         {
@@ -219,7 +242,7 @@ namespace FileSortingService
             }
             return false;
         }
-        public static Settings LoadJson(string path)
+        private Settings LoadJson(string path)
         {
             List<Settings> settings = new List<Settings>();
             using (StreamReader reader = new StreamReader(path))
@@ -229,6 +252,10 @@ namespace FileSortingService
             }
 
             return settings[0];
+        }
+        private bool IsDirectoryEmpty(string path)
+        {
+            return !Directory.EnumerateFileSystemEntries(path).Any();
         }
     }
 }
